@@ -1,0 +1,53 @@
+// Toggle class active untuk hamburger menu
+const navbarNav = document.querySelector('.navbar-nav');
+// ketika hamburger menu di klik
+document.querySelector('#hamburger-menu').onclick = (e) => {
+  e.preventDefault();
+  navbarNav.classList.toggle('active');
+  // Tutup yang lain jika terbuka
+  searchForm.classList.remove('active');
+  shoppingCart.classList.remove('active');
+};
+
+// Toggle class active untuk search form
+const searchForm = document.querySelector('.search-form');
+const searchBox = document.querySelector('#search-box');
+
+document.querySelector('#search-button').onclick = (e) => {
+  e.preventDefault();
+  searchForm.classList.toggle('active');
+  searchBox.focus();
+  // Tutup yang lain jika terbuka
+  navbarNav.classList.remove('active');
+  shoppingCart.classList.remove('active');
+};
+
+// Toggle class active untuk shopping cart
+const shoppingCart = document.querySelector('.shopping-cart');
+document.querySelector('#shopping-cart-button').onclick = (e) => {
+  e.preventDefault();
+  shoppingCart.classList.toggle('active');
+  // Tutup yang lain jika terbuka
+  navbarNav.classList.remove('active');
+  searchForm.classList.remove('active');
+};
+
+// Klik di luar elemen
+const hm = document.querySelector('#hamburger-menu');
+const sb = document.querySelector('#search-button');
+const sc = document.querySelector('#shopping-cart-button');
+
+document.addEventListener('click', function (e) {
+  // Jika klik di luar sidebar dan tombolnya, tutup sidebar tersebut
+  if (!hm.contains(e.target) && !navbarNav.contains(e.target)) {
+    navbarNav.classList.remove('active');
+  }
+
+  if (!sb.contains(e.target) && !searchForm.contains(e.target)) {
+    searchForm.classList.remove('active');
+  }
+
+  if (!sc.contains(e.target) && !shoppingCart.contains(e.target)) {
+    shoppingCart.classList.remove('active');
+  }
+});
